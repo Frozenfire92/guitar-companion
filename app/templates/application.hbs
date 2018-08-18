@@ -1,5 +1,25 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<header {{action (if screen.isSmall (toggle "navOpen" this) (optional 'noop')) }}>
+  <a class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(0, 0, 0)" viewBox="0 0 80 60">
+      <rect y="0" width="100%" height="20%" rx="5%" ry="5%" />
+      <rect y="40%" width="100%" height="20%" rx="5%" ry="5%" />
+      <rect y="80%" width="100%" height="20%" rx="5%" ry="5%" />
+    </svg>
+  </a>
 
-{{outlet}}
+  <h1>Guitar Companion</h1>
+
+  <nav class='open'>
+    {{#liquid-if (or (and screen.isSmall navOpen) (not screen.isSmall))}}
+      {{#link-to 'chords'}}Chords{{/link-to}}
+      {{#link-to 'fretboard'}}Fretboard{{/link-to}}
+      {{#link-to 'practice'}}Practice{{/link-to}}
+      {{#link-to 'downloads'}}Downloads{{/link-to}}
+      {{#link-to 'settings'}}Settings{{/link-to}}
+    {{/liquid-if}}
+  </nav>
+</header>
+
+<main>
+  {{liquid-outlet}}
+</main>

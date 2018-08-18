@@ -1,0 +1,10 @@
+<label>
+  {{input type="checkbox" checked=showChord}}
+  Show Chord
+</label>
+<label>
+  {{select-box options=(map-by 'id' model) value=selectedChordId}}
+  Chord
+</label>
+
+{{fret-board showChord=showChord chord=(find-by 'id' selectedChordId model)}}

@@ -1,0 +1,35 @@
+{{#liquid-spacer}}
+  {{#if configOpen}}
+    <div class="config">
+      <label>
+        Beats per Measure {{input value=beatsPerMeasure type="number" step="1" min="0" max="16"}}
+      </label>
+
+      <label>
+        Tempo/BPM {{input value=tempo type="number" step="1" min="0" max="1000"}}
+      </label>
+
+      <label>
+        Progression
+        {{select-box options=selectOptions value=mode}}
+      </label>
+
+      {{#if (eq mode 'custom')}}
+        <label>
+          {{input type="text"}}
+        </label>
+      {{/if}}
+
+      <button {{action 'start'}}>Start</button>
+      <button {{action 'stop'}}>Stop</button>
+    </div>
+  {{/if}}
+  <button class="config-toggle" {{action (toggle 'configOpen' this)}}>
+    {{if configOpen 'Hide Config' 'Config'}}
+  </button>
+{{/liquid-spacer}}
+
+{{#liquid-bind chord use="crossFade" as |currentChord|}}
+  <h3>{{chord.id}}</h3>
+  {{chord-diagram chord=currentChord}}
+{{/liquid-bind}}

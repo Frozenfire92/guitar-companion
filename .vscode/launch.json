@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "runtimeArgs": [
+        "--remote-debugging-port=9222"
+      ],
+      "url": "http://localhost:4200/",
+      "sourceMapPathOverrides": {
+        "guitar-companion/*": "${workspaceRoot}/app/*"
+      },
+      "port": 9222,
+      "trace": true
+    }
+  ]
+}

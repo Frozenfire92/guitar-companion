@@ -1,0 +1,28 @@
+#chords-index {
+  a.column {
+    min-width: 8rem;
+    max-width: 12em;
+    flex: 1;
+    margin: 0.25rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    h3 {
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (min-width: $tablet-width){
+  #chords-index {
+    a.column {
+      min-width: 12rem;
+    }
+  }
+}
+
+#chords-chord {
+  svg {
+    margin-top: 2rem;
+    max-height: 20rem;
+  }
+}

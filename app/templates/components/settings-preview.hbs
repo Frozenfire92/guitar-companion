@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="column card">
+    <div class="row">
+      <div class="column">
+        <h3>Global Settings</h3>
+        <label>
+          {{select-box options=(array "right" "left") value=storage.hand}} Hand
+        </label>
+        <label>
+          {{input type="color" value=storage.stringColor}} String Color
+        </label>
+        <label>
+          {{input type="color" value=storage.fretColor}} Fret Color
+        </label>
+        <label>
+          {{input type="color" value=storage.fingerColor}} Finger Color
+        </label>
+        <label>
+          {{input type="color" value=storage.fingerBorderColor}} Finger Border Color
+        </label>
+        <label>
+          {{input type="color" value=storage.fingerTextColor}} Finger Text Color
+        </label>
+        {{!-- <label> --}}
+          <button {{action 'reset'}}>Reset All to Default</button>
+        {{!-- </label> --}}
+      </div>
+      <div class="column"></div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="column card">
+    <div class="row">
+      <div class="column">
+        <h3>Chord Diagram</h3>
+        <label>
+          {{input type="checkbox" checked=storage.chordDiagramTextInFinger}}
+          Show finger number in finger
+        </label>
+        <label>
+          {{input type="checkbox" checked=storage.chordDiagramFingeringTextOutside}}
+          Show finger number outside frets
+        </label>
+        <label>
+          {{input type="checkbox" checked=storage.chordDiagramFingeringOnTop}}
+          Show labels on top
+        </label>
+        <label>
+          {{select-box options=(array "horizontal" "vertical") value=storage.chordDiagramOrientation}}
+          Orientation
+        </label>
+      </div>
+      <div class="column">
+        {{chord-diagram chord=chord}}
+      </div>
+    </div>
+  </div>
+
+  <div class="column card">
+    <div class="row">
+      <div class="column">
+        <h3>Fretboard</h3>
+        <label>
+          {{input type="checkbox" checked=storage.fretBoardShowMarkerDots}} Show fret marker dots
+        </label>
+        {{#liquid-if storage.fretBoardShowMarkerDots}}
+        <label>
+          {{input type="color" value=storage.fretBoardMarkerDotsColor}} Fret marker dot Color
+        </label>
+        <label>
+          {{input type="number" min="0" max="1" step="0.05" value=storage.fretBoardMarkerDotsOpacity}} Fret marker dot Opacity
+        </label>
+        {{/liquid-if}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        {{fret-board}}
+      </div>
+    </div>
+  </div>
+</div>

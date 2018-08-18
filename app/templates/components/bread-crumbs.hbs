@@ -1,0 +1,4 @@
+{{#each crumbs as |crumb i|}}
+  {{#if (gt i 0)}}<span class="bread-crumb-spacer">></span>{{/if}}
+  {{#link-to crumb.link class="bread-crumb"}}{{crumb.label}}{{/link-to}}
+{{/each}}

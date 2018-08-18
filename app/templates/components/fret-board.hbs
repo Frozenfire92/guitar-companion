@@ -1,0 +1,114 @@
+{{!-- Strings --}}
+{{#each stringPositions as |position|}}
+  <line
+    class="string"
+    x1={{sub minX (sub (div barWidth 2) 2)}}
+    y1={{position}}
+    x2={{maxX}}
+    y2={{position}}
+    stroke-width={{stringWidth}}
+    stroke={{storage.stringColor}}
+  />
+{{/each}}
+
+{{!-- Frets --}}
+{{#each fretPositions as |position i|}}
+  {{#let
+    (if
+      (eq i 0)
+      barWidth
+      fretWidth
+    )
+    as |strokeWidth|
+  }}
+    <line
+      class="fret"
+      x1={{position}}
+      y1={{sub minY (div stringWidth 2)}}
+      x2={{position}}
+      y2={{add maxY (div stringWidth 2)}}
+      stroke-width={{strokeWidth}}
+      stroke={{storage.fretColor}}
+    />
+  {{/let}}
+{{/each}}
+
+{{!-- Fret Marker Dots --}}
+{{#if storage.fretBoardShowMarkerDots}}
+  {{#each markerPositions as |position|}}
+    <circle
+      class="finger"
+      cx={{position.cx}}
+      cy={{position.cy}}
+      r={{position.r}}
+      fill={{storage.fretBoardMarkerDotsColor}}
+      stroke={{storage.fretBoardMarkerDotsBorderColor}}
+      stroke-width="3"
+      opacity={{storage.fretBoardMarkerDotsOpacity}}
+    />
+  {{/each}}
+{{/if}}
+
+{{!-- Fingers: Bar --}}
+{{#if bar}}
+  <rect
+    class="finger-bar"
+    x={{bar.x}}
+    y={{bar.y}}
+    width={{bar.width}}
+    height={{bar.height}}
+    rx={{bar.rx}}
+    ry={{bar.ry}}
+    fill={{storage.fingerColor}}
+    stroke={{storage.fingerBorderColor}}
+    stroke-width="3"
+  />
+{{/if}}
+
+{{!-- Fingers: Individual --}}
+{{#each fingerPositions as |position|}}
+  <circle
+    class="finger"
+    cx={{position.cx}}
+    cy={{position.cy}}
+    r={{position.r}}
+    fill={{storage.fingerColor}}
+    stroke={{storage.fingerBorderColor}}
+    stroke-width="3"
+  />
+
+  {{#if textInFinger}}
+    <text
+      class="finger-label"
+      x={{position.cx}}
+      y={{position.cy}}
+      dy="6"
+      text-anchor="middle"
+      stroke-width="0.3"
+      font-size="20"
+      fill={{storage.fingerTextColor}}
+      stroke={{storage.fingerTextColor}}
+    >
+      {{position.finger}}
+    </text>
+  {{/if}}
+
+  {{#if fingeringTextOutside}}
+    {{#let
+      (if isHorizontal (if fingeringOnTop 10 (sub width (div padding 2))) position.cx)
+      (if isHorizontal (add position.cy 5) (if fingeringOnTop 15 height))
+      as |x y|
+    }}
+    <text
+      class="finger-label-bottom"
+      x={{x}}
+      y={{y}}
+      text-anchor="middle"
+      stroke-width="0.3"
+      font-size="20"
+    >
+      {{position.finger}}
+    </text>
+    {{/let}}
+  {{/if}}
+{{/each}}

@@ -1,0 +1,12 @@
+<section id="chords-index">
+
+  <div class="row {{if screen.isSmall 'flex-center'}}">
+    {{#each model as |chord|}}
+      {{#link-to 'chords.chord' chord.id class="column card"}}
+        <h3>{{chord.id}}</h3>
+        {{chord-diagram chord=chord}}
+      {{/link-to}}
+    {{/each}}
+  </div>
+
+</section>

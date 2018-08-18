@@ -1,0 +1,22 @@
+.settings-preview {
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  > .row {
+    > .column {
+      padding: 1rem;
+      margin: 0.25rem;
+    }
+  }
+
+  .chord-diagram {
+    width: 75%;
+    margin: 1rem auto;
+  }
+
+  .fret-board {
+    margin-top: 1rem;
+  }
+}

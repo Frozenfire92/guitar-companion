@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "6"
+  - "8"
 
 sudo: false
 dist: trusty
@@ -24,3 +24,15 @@ before_install:
 script:
   - npm run lint:js
   - npm test
+
+before_deploy:
+  - ember build -e production
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  on:
+    branch: master
+  local-dir: dist

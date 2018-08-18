@@ -1,0 +1,23 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: $desktop-width) {
+  .column {
+    flex: 1
+  }
+}
