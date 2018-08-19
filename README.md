@@ -28,7 +28,7 @@ A progressive web app to help practice guitar. Dynamically generates svg diagram
 
 ### Deploying
 
-Automatically deployed to GitHub Pages via [TravisCI](travis.yml)
+Automatically deployed to GitHub Pages via [TravisCI](travis.yml).
 
 ## Further Reading / Useful Links
 
