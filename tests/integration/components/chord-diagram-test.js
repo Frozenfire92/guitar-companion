@@ -13,14 +13,5 @@ module('Integration | Component | chord-diagram', function(hooks) {
     await render(hbs`{{chord-diagram}}`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#chord-diagram}}
-        template block text
-      {{/chord-diagram}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

@@ -1,5 +1,5 @@
 import SVGComponent from './svg-base';
-import { computed, get } from '@ember/object';
+import { computed, get, getWithDefault } from '@ember/object';
 import { alias, equal } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
@@ -51,7 +51,7 @@ export default SVGComponent.extend({
   leftHanded: equal('storage.hand', 'left'),
 
   placements: computed('isHorizontal', 'leftHanded', 'chord.adjustedPlacements.[]', function() {
-    let adjustedPlacements = get(this, 'chord.adjustedPlacements');
+    let adjustedPlacements = getWithDefault(this, 'chord.adjustedPlacements', []);
     let isHorizontal = get(this, 'isHorizontal');
     return get(this, 'leftHanded')
       ? isHorizontal

@@ -8,10 +8,10 @@ module('Integration | Helper | ordinal-number', function(hooks) {
 
   // Replace this with your real tests.
   test('it renders', async function(assert) {
-    this.set('inputValue', '1234');
+    this.set('inputValue', 1234);
 
     await render(hbs`{{ordinal-number inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), '1234');
+    assert.equal(this.element.textContent.trim(), '1234th');
   });
 });

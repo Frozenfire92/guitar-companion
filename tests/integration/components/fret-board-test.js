@@ -13,14 +13,5 @@ module('Integration | Component | fret-board', function(hooks) {
     await render(hbs`{{fret-board}}`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#fret-board}}
-        template block text
-      {{/fret-board}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

@@ -1,7 +1,9 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
+import { set } from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
+import Route from '@ember/routing/route';
 
 module('Integration | Component | bread-crumbs', function(hooks) {
   setupRenderingTest(hooks);
@@ -10,17 +12,27 @@ module('Integration | Component | bread-crumbs', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{bread-crumbs}}`);
+    set(this, 'applicationRoute', {
+      controller: {
+        currentRouteName: 'one.two'
+      }
+    });
 
-    assert.equal(this.element.textContent.trim(), '');
+    let routeOneStub = Route.extend({
+      init(){
+        this._super(...arguments);
+        set(this, 'breadCrumb', {
+          label: 'One'
+        });
+      }
+    });
 
-    // Template block usage:
-    await render(hbs`
-      {{#bread-crumbs}}
-        template block text
-      {{/bread-crumbs}}
-    `);
+    let routeTwoStub = Route.extend({});
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    this.owner.register('route:one', routeOneStub);
+    this.owner.register('route:one.two', routeTwoStub);
+    await render(hbs`{{bread-crumbs applicationRoute=applicationRoute}}`);
+
+    assert.equal(this.element.textContent.trim().replace(/\s+/g, ' '), 'One > Two');
   });
 });

@@ -24,8 +24,10 @@ module('Unit | Initializer | service-injector', function(hooks) {
 
   // Replace this with your real tests.
   test('it works', async function(assert) {
-    await this.application.boot();
-
-    assert.ok(true);
+    run(async ()=>{
+      await this.application.boot();
+  
+      assert.ok(true);
+    });
   });
 });
